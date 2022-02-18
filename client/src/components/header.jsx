@@ -1,0 +1,40 @@
+import React from 'react';
+import {Link} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.css';
+
+const Header = () => {
+    return ( 
+        <div>
+
+        <header>
+          <h1 className="display-2 bg-secondary text-white text-center p-2 mb-0">HELPING HAND</h1>
+        </header>
+
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">Home</Link>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/contact">contact</Link>
+              </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/signin">Sign In</Link>
+                </li>
+              <li className="nav-item">
+                  <Link className="nav-link invisible" to="/admin">Admin</Link>
+              </li>
+            </ul>
+          </div>
+   
+            
+        </div>
+      </nav>
+      </div>
+     );
+}
+ 
+export default Header;
