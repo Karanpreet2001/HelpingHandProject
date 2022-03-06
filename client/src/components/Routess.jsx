@@ -4,14 +4,26 @@ import {Route,Routes} from "react-router-dom";
 import Home from "./home.jsx";
 import Location from "./location.jsx";
 import Services from './services.jsx';
+import ServiceDetail from './serviceDetails.jsx';
+import SignIn from './signin.jsx';
+import ServiceProvider from './serviceProDetails.jsx';
+import AddService from './addService.jsx';
 
-const Routess = () => {
+
+
+
+
+const Routess = ({services, onUpdate, onDelete, onViewMessage}) => {
     return ( <div>
         
         <Routes>
             <Route path="/" element={<Home/>}></Route>
             <Route path="/location" exact element={<Location/>} />
-            <Route path="/services" exact element={<Services/>} />
+            <Route path="/services" exact element={<Services services={services}/>} />
+            <Route path="/servicesDetails/:id" exact element={<ServiceDetail/>} />
+            <Route path="/signin" exact element={<SignIn/>} />
+            <Route path="/serviceProvider" exact element={<ServiceProvider services={services} onUpdate={onUpdate} onDelete={onDelete} onViewMessage={onViewMessage}/>}/>
+            <Route path="/addService" exact element={<AddService/>}/>
             
         </Routes>
     </div> );

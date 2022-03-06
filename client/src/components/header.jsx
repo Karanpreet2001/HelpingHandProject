@@ -21,15 +21,18 @@ const Header = () => {
               <li className="nav-item">
                 <Link className="nav-link" to="/contact">contact</Link>
               </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signin">Sign In</Link>
-                </li>
+                
               <li className="nav-item">
                   <Link className="nav-link invisible" to="/admin">Admin</Link>
               </li>
             </ul>
           </div>
-   
+          <Link to='/signin' >
+              <button type="button" className="btn btn-success position-relative">
+                Sign In
+                
+              </button>
+            </Link>
             
         </div>
       </nav>

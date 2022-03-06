@@ -9,10 +9,6 @@ const Home = (city) => {
 
     const [data, setData]=useState("");
 
-
-    
-
-
     const handleChange=(e)=>{
         const target=e.target;
 
@@ -28,21 +24,12 @@ const Home = (city) => {
         
         <div>
 
-     
-            
-
-
-
             <form>
             Enter Your City Name <br/>
             <input type="text"  id="data" className="form-control" onChange={handleChange} />
-            
-
-            <Link to="/location" state={{data:data}} >Submit</Link>
+           <Link to="/location" state={{data:data}} >Submit</Link>
 
             </form>
-                
-
             
         </div>
         </div>

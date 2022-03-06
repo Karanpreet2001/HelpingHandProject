@@ -36,13 +36,17 @@ app.get("/api/SPInfo", async(req,res)=>{
 });
 
 
+
+
+
+
 // Creating data 
 app.post("/api/SPInfo", async(req,res)=>{
 
     try{
 
 
-        const{sp_id, owner, companyName, services, phone, email,address, deal, image}= req.body;
+        const{sp_id,username, occupation,owner,city, message, companyName, services, phone, email,address, deal, image}= req.body;
 
 
         const serviceProvider= new ServiceProvider({
@@ -54,7 +58,11 @@ app.post("/api/SPInfo", async(req,res)=>{
             email: email,
             address: address, 
             deal: deal,
-            image: image
+            image: image,
+            city:city,
+            message:message,
+            occupation:occupation,
+            username:username
         });
 
 
@@ -80,6 +88,8 @@ app.post("/api/SPInfo", async(req,res)=>{
 });
 
 
+
+
 //updating service provider
 
 // app.put("/api/SPInfo/:id", async(req, res)=>{
@@ -100,6 +110,39 @@ app.post("/api/SPInfo", async(req,res)=>{
 // })
 
 
+
+app.delete("/api/SPInfo/:id",async(req,res)=>{
+
+    try{
+
+        let _id= req.params.id;
+        _id= mongoose.Types.ObjectId(_id);
+
+        await mongoose.connect(url);
+        console.log("Database Connected");
+
+        ServiceProvider.deleteOne(
+            {_id:_id},
+            
+                (err)=>{
+                    if(err){
+                        console.log(err);
+                        res.send(err);
+                    }else{
+                        res.send("Updated Successfully");
+                        mongoose.connection.close();
+                    }
+                }
+            
+        )
+
+    }catch(err){
+        console.log(err);
+    }
+});
+
+
+
 app.listen(5000,()=>{
     console.log("Server is Up and listening at 5000");
-})
+});
