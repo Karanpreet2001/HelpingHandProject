@@ -141,8 +141,10 @@ app.delete("/api/SPInfo/:id",async(req,res)=>{
     }
 });
 
+app.get('/', ()=> {
+    return "Server up and running."
+})
 
-
-app.listen(5000,()=>{
+app.listen(5001,()=>{
     console.log("Server is Up and listening at 5000");
 });

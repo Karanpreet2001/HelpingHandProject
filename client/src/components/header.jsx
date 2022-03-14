@@ -1,11 +1,25 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
+import {Container, Navbar, Nav} from 'react-bootstrap';
+import '../styles/header.css';
 
 const Header = () => {
     return ( 
         <div>
 
+        <Navbar bg="dark" variant="dark" className="py-3">
+          <Container>
+          <Navbar.Brand href="#home" className="navTitle">Helping Hand</Navbar.Brand>
+          
+          <Nav className="ml-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/contact">Contact</Nav.Link>
+            <Nav.Link href="/singin" className="signInBtn">Sign In</Nav.Link>
+          </Nav>
+          </Container>
+        </Navbar>
+{/* 
         <header>
           <h1 className="display-2 bg-secondary text-white text-center p-2 mb-0">HELPING HAND</h1>
         </header>
@@ -35,7 +49,7 @@ const Header = () => {
             </Link>
             
         </div>
-      </nav>
+      </nav> */}
       </div>
      );
 }

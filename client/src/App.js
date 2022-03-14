@@ -1,4 +1,5 @@
 import Header from './components/header';
+import { Container } from 'react-bootstrap';
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Routess from './components/Routess';
@@ -45,9 +46,10 @@ useEffect(()=>{
     <div className="App">
       
       <Router>
-      <Header/>
-      <Routess services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews}></Routess>
-
+          <Header/>
+        <Container>
+          <Routess services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews}></Routess>
+        </Container>
       </Router>
       
 
