@@ -1,0 +1,10 @@
+.navTitle{
+    font-size: 1.5rem;
+}
+
+.signInBtn{
+    background-color: blue;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 5px;
+}

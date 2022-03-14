@@ -1,0 +1,14 @@
+.homeContainer{
+    max-width: 720px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.heading{
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.form{
+    margin-top: 50px;
+}
