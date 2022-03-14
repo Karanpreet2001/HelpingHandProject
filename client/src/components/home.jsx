@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
-import {Link} from "react-router-dom";
+import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import {Container, Form, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import "../styles/home.css";
 
-const Home = (city) => {
+const Home = ( props ) => {
 
-
-    const [data, setData]=useState("");
+    const [data] = useState([
+        {
+            label: "Vancouver",
+            value: "Vancouver"
+        },
+        { label: "Toronto", value: "Toronto"}]
+    );
+    const [finalVal, setFinalVal] = useState("Vancouver");
 
     const handleChange=(e)=>{
-        const target=e.target;
-
-        if(target.id==="data")
-            setData(target.value);
-      
+        const target=e.currentTarget.value;
+        setFinalVal(target);
     }
 
-//home made
+    let navigate = useNavigate();
+
+    async function SubmitBtn(e) {
+        e.preventDefault();
+        navigate("/location", {state: finalVal});
+    }
 
     return ( 
         
@@ -39,16 +47,18 @@ const Home = (city) => {
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">  
                             <Form.Label>Select your city from below:</Form.Label>
-                            <Form.Select aria-label="Default select example">
-                                <option isValid="true">Select City</option>
-                                <option value="Vancouver">Vancouver</option>
-                                <option value="Toronot">Toronto</option>
+                            <Form.Select aria-label="Default select example" onChange={handleChange}>
+                            {data.map(({ label, value }) => (
+                                <option key={value} value={value}>
+                                {label}
+                                </option>
+                            ))}
                             </Form.Select>
                             <Form.Text className="text-muted">
                                 Only availible in selected cities for now.
                             </Form.Text>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" onClick={SubmitBtn}>
                             Submit
                         </Button>
                     </Form>
