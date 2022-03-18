@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const ServiceProvider = ({services,onUpdate, onDelete, onViewMessage}) => {
 
-    const username="karan";
+    const username="max";
 
     const serviceProDetails = services.filter((service)=>service.username === username);
 

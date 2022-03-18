@@ -5,10 +5,12 @@ const mongoose= require("mongoose");
 const cors= require("cors");
 
 const ServiceProvider=require("./models/ServiceProvider.js");
+const Login = require("./models/login.js");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
+
 
 
 const url="mongodb://localhost:27017/HelpingHandDB";
@@ -46,6 +48,7 @@ app.post("/api/SPInfo", async(req,res)=>{
     try{
 
 
+        console.log(req.body);
         const{sp_id,username, occupation,owner,city, message, companyName, services, phone, email,address, deal, image}= req.body;
 
 
@@ -87,6 +90,63 @@ app.post("/api/SPInfo", async(req,res)=>{
     }
 });
 
+
+app.post("/api/Login", async(req,res)=>{
+
+
+    const {username, password, type}= req.body;
+
+    const login = new Login({
+        username:username,
+        password:password,
+        type:type
+    });
+
+    try{
+
+       await mongoose.connect(url);
+
+        login.save(err=>{
+            if(err) res.send(err);
+            else{
+                console.log("document is inserted");
+                res.send(login);
+
+                mongoose.connection.close();
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+    }
+
+
+});
+
+
+
+app.get("/api/Login", async(req,res)=>{
+
+   
+
+    try{
+
+        await mongoose.connect(url);
+
+        Login.find((err,login)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send(login);
+            
+        }
+    })
+    }catch(err){
+        console.log(err);
+    }
+
+
+});
 
 
 
@@ -145,6 +205,6 @@ app.get('/', ()=> {
     return "Server up and running."
 })
 
-app.listen(5001,()=>{
+app.listen(5000,()=>{
     console.log("Server is Up and listening at 5000");
 });

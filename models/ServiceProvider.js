@@ -34,27 +34,25 @@ const serviceProviderSchema= new mongoose.Schema({
         required:[true, "Please enter the Address"]
     },
     deal:{
-        type:String,
-        required:[true, "Please enter the deal"]
+        type:String
     },
     city:{
         type:String,
         required:[true, "Please enter the city"]
     },
     message:{
-        type:String,
-        required:[true, "Please enter the message"]
+        type:String
     },
     image:{
-        type:String,
-        required:[true, "Please enter the image"]
+        type:String
     },
     occupation:{
         type:String,
-        required:[true, "Please enter the accupation"]
-    },username:{
+        required:[true, "Please enter the occupation"]
+    },
+    username:{
         type:String,
-        required:[true, "Please enter the accupation"]
+        required:[true, "Please enter the username"]
     }
  
 });

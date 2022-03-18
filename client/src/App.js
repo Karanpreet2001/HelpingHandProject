@@ -11,6 +11,10 @@ function App() {
   
 
 const [services,setServices]=useState([]);
+const [newService,setNewService]=useState({});
+const [login, setLogin] = useState({});
+
+
 
 useEffect(()=>{
   axios.get("http://localhost:5000/api/SPInfo")
@@ -41,6 +45,20 @@ useEffect(()=>{
 
     }
 
+    const handleAdd=()=>{
+
+      const {data} = axios.post("http://localhost:5000/api/SPInfo/",newService);
+      console.log(data);
+
+      if(typeof data ==="object"){
+        const service = data;
+        const newServices = [...services, service];
+        setServices([...newServices]);
+      }else{
+        console.log("Can Not Add A SERVICE");
+      }
+    }
+
 
   return (
     <div className="App">
@@ -48,7 +66,7 @@ useEffect(()=>{
       <Router>
           <Header/>
         <Container>
-          <Routess services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews}></Routess>
+          <Routess login={login} services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews} newService={newService} addToDB={handleAdd}></Routess>
         </Container>
       </Router>
       

@@ -1,14 +1,34 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import {useNavigate} from "react-router-dom";
 
 
 const SignIn = () => {
 
-    const [user, setUser] = useState({
-        userid: '', password: '',
+
+    const [data,setData]= useState([]);
+
+    useEffect(()=>{
+        axios.get("http://localhost:5000/api/Login")
+        .then(resp=>{
+          console.log(resp,resp.data);
+          setData(resp.data);
+          
+        })
+        .catch(err=>{
+          console.log(err);
+        })
+      },[]);
+
+
+    const navigate= useNavigate();
+    const [s, setS]=useState({
+        username:"",
+        password:"",
+        type:""
     });
 
-    const [data, setData] = useState('');
-
+  
     const handleChange=(e)=>{
 
 
@@ -16,41 +36,92 @@ const SignIn = () => {
         console.log(target);
 
 
-        if(target.id=="inputEmail"){
-            user.userid = target.value;
+        if(target.id==="inputEmail"){
+           
+            s.username=target.value;
         }
-        if(target.id=="inputPassward"){
-            user.password = target.value;
+        if(target.id==="inputPassword"){
+           
+            s.password=target.value
         }
+
+        if(target.id==="type"){
+            
+            s.type="SP";
+        }else{
+           
+            s.type="C";
+        }
+
+        console.log(login);
+        
+    }
+
+    
+
+     const checkUser=  (e)=>{
+        e.preventDefault();
+
+        
+            
+             
+        for(var i=0; i<data.length;i++){
+
+            if(s.username !==""& s.password !==""){
+
+                if(data[i].username===s.username && data[i].password===s.password && data[i].type===s.type){
+
+                    navigate("/");
+                }
+            }else{
+                navigate("/error");
+            }
+           
+        }    
+        
+       
+
+        // console.log(data[0]);
+        // if(data[0].username ===s.username){
+        //     console.log("correct");
+        //     navigate("/");
+        // }else{
+        //     navigate("/error");
+        // }
     }
 
 
-    const transferToServiceProvider = () => {
-        setData(user.userid);
-      }
+    
 
-    return (   <div className="d-flex justify-content-center align-items-center container ">
+    return ( <> <div className="d-flex justify-content-center align-items-center container ">
     <form>
         <h3 className="display-5 text-center p-1">Log In</h3>
         <div className="row mb-3">
             <label htmlFor="inputEmail" className="col-sm-2 col-form-label mx-3">Email</label>
             <div className="col-sm-10">
-                <input type="email" className="form-control" name="inputEmail" id="inputEmail" placeholder="Email" onChange={handleChange} />
+                <input type="text" className="form-control" name="inputEmail" id="inputEmail" value={login.username} placeholder="Email" onChange={handleChange} />
             </div>
         </div>
         <div className="row mb-3">
             <label htmlFor="inputPassword" className="col-sm-3 col-form-label mx-3">Password</label>
             <div className="col-sm-10">
-                <input type="password" className="form-control" name="inputPassword" id="inputPassword" placeholder="Password" onChange={handleChange} />
+                <input type="password" className="form-control" name="inputPassword" id="inputPassword" value={login.password} placeholder="Password" onChange={handleChange} />
             </div>
         </div>
+        <div className="form-check">
+         <input className="form-check-input" type="checkbox" value={login.type} id="type" onChange={handleChange}/>
+         <label className="form-check-label" htmlFor="flexCheckDefault">
+          Service Provider
+          </label>
+</div>
         <div className="row">
             <div className="col-sm-10 offset-sm-4">
-                <button type="submit" className="btn btn-primary" onClick={() => transferToServiceProvider()}>Sign in</button>
+                <button type="submit" className="btn btn-primary" onClick={checkUser}>Sign in</button>
             </div>
         </div>
     </form>
-</div> );
+</div>
+</> );
 }
  
 export default SignIn;
