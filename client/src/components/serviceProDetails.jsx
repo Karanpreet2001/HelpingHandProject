@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './main.css';
-
+import {useLocation} from "react-router";
 import { Link } from 'react-router-dom';
 
 
 
 const ServiceProvider = ({services,onUpdate, onDelete, onViewMessage}) => {
 
-    const username="max";
+    const location=useLocation();
+    const data = location['state'];
+    console.log(data);
 
-    const serviceProDetails = services.filter((service)=>service.username === username);
+    const serviceProDetails = services.filter((service)=>service.username === data);
 
     const myStyle = {
         
@@ -18,24 +20,58 @@ const ServiceProvider = ({services,onUpdate, onDelete, onViewMessage}) => {
             right: "30px",
           
     }
+    var name = serviceProDetails[0].owner;
+
+  
 
 
     return ( <div>
 
-            {
-                serviceProDetails.map((detail)=>(
-                    <div key = {detail.sp_id}>
-                    <h1>Hello, {detail.owner}</h1>
-                    <h2>{detail.owner}</h2>
-                    <h2>{detail.services}</h2>
-                    <button type="button" className="btn btn-warning btn" onClick={()=>onUpdate(detail)}>Update Data</button> &nbsp; &nbsp;
-                    <button type="button" className="btn btn-danger btn" onClick={()=>onDelete(detail)}>Delete Data</button> &nbsp; &nbsp;
-                    <button type="button" className="btn btn-secondary btn"onClick={()=>onViewMessage(detail)}>View Messages</button> &nbsp; &nbsp;
+            
+                <div className='name'>Hi, <span className="names">{name}</span></div>
 
-                    </div>
+               
+            
+                <table className="table table-sm">
+                <thead>
+                  <tr className="table-primary">
+                    <th scope="col">S.P. Id</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Company Name</th>
+                    <th scope="col">Services</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Action</th>
+                    
+  
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                      { serviceProDetails.map((detail)=>(
+                          <tr key = {detail.sp_id}>
+                    
+                    <td>{detail.sp_id}</td>
+                    <td><img className='imgOwner' src={detail.image} width="50px" height="50px"/>  </td>
+                    <td>{detail.companyName}</td>
+                    <td>{detail.services}</td>
+                    <td>{detail.address}</td>
+                    <td>{detail.phone}</td>
+                    <td> <button type="button" className="btn btn-danger btn" onClick={()=>onDelete(detail)}>Delete</button> &nbsp; <button type="button" className="btn btn-warning btn"onClick={()=>onUpdate(detail)}>Update</button> </td>
+                    </tr>
+
                 ))
-            }
+                      }
+                  
+                 
+                
+                   
+                </tbody>
+              </table>
 
+              
+               
+            
 {/* 
 <button style={myStyle} className="btn btn-secondary btn">Add New Service</button>  */}
 <Link to="/addService"><button type="button" style={myStyle} className="btn btn-primary m-2">Add New Service</button></Link>

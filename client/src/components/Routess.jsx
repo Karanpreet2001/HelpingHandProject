@@ -13,16 +13,17 @@ import AddService from './addService.jsx';
 
 
 
+
 const Routess = ({services, onUpdate, onDelete, onViewMessage, newService, addToDB, login}) => {
     return ( <div>
         
         <Routes>
-            <Route path="/" element={<Home/>}></Route>
+            <Route path="/home" element={<Home/>}></Route>
+            <Route path="/" element={<SignIn/>}></Route>
             <Route path="/location" exact element={<Location/>} />
             <Route path="/services" exact element={<Services services={services}/>} />
             <Route path="/servicesDetails/:id" exact element={<ServiceDetail/>} />
-            <Route path="/signin" exact element={<SignIn login={login}/>} />
-            <Route path="/serviceProvider" exact element={<ServiceProvider services={services} onUpdate={onUpdate} onDelete={onDelete} onViewMessage={onViewMessage}/>}/>
+            <Route path="/serviceProvider" exact element={<ServiceProvider services={services} />}/>
             <Route path="/addService" exact element={<AddService newService={newService} addToDB={addToDB}/>}/>
             
         </Routes>

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {useNavigate} from "react-router-dom";
+import { useLocation } from 'react-router';
+
 
 
 const SignIn = () => {
@@ -22,11 +24,7 @@ const SignIn = () => {
 
 
     const navigate= useNavigate();
-    const [s, setS]=useState({
-        username:"",
-        password:"",
-        type:""
-    });
+    const [s, setS]=useState({});
 
   
     const handleChange=(e)=>{
@@ -37,24 +35,17 @@ const SignIn = () => {
 
 
         if(target.id==="inputEmail"){
-           
-            s.username=target.value;
+           s.username=target.value;
         }
         if(target.id==="inputPassword"){
-           
-            s.password=target.value
+           s.password=target.value
         }
 
-        if(target.id==="type"){
-            
+        if(target.id==="type"){   
             s.type="SP";
-        }else{
-           
+        }else{    
             s.type="C";
-        }
-
-        console.log(login);
-        
+        }  
     }
 
     
@@ -71,23 +62,18 @@ const SignIn = () => {
 
                 if(data[i].username===s.username && data[i].password===s.password && data[i].type===s.type){
 
-                    navigate("/");
+                    if(s.type==="SP"){
+                        navigate("/serviceProvider" , {state: s.username})
+                    }else{
+                        navigate("/");
+                    }
                 }
             }else{
                 navigate("/error");
             }
            
         }    
-        
-       
 
-        // console.log(data[0]);
-        // if(data[0].username ===s.username){
-        //     console.log("correct");
-        //     navigate("/");
-        // }else{
-        //     navigate("/error");
-        // }
     }
 
 
@@ -99,17 +85,17 @@ const SignIn = () => {
         <div className="row mb-3">
             <label htmlFor="inputEmail" className="col-sm-2 col-form-label mx-3">Email</label>
             <div className="col-sm-10">
-                <input type="text" className="form-control" name="inputEmail" id="inputEmail" value={login.username} placeholder="Email" onChange={handleChange} />
+                <input type="text" className="form-control" name="inputEmail" id="inputEmail" value={s.username} placeholder="Email" onChange={handleChange} />
             </div>
         </div>
         <div className="row mb-3">
             <label htmlFor="inputPassword" className="col-sm-3 col-form-label mx-3">Password</label>
             <div className="col-sm-10">
-                <input type="password" className="form-control" name="inputPassword" id="inputPassword" value={login.password} placeholder="Password" onChange={handleChange} />
+                <input type="password" className="form-control" name="inputPassword" id="inputPassword" value={s.password} placeholder="Password" onChange={handleChange} />
             </div>
         </div>
         <div className="form-check">
-         <input className="form-check-input" type="checkbox" value={login.type} id="type" onChange={handleChange}/>
+         <input className="form-check-input" type="checkbox" value={s.type} id="type" onChange={handleChange}/>
          <label className="form-check-label" htmlFor="flexCheckDefault">
           Service Provider
           </label>
