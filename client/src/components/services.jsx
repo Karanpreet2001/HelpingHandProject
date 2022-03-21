@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router';
 
 import { Link } from 'react-router-dom';
-
+import "./main.css";
 
 const Services = ({services}) => {
 
@@ -24,22 +24,31 @@ const Services = ({services}) => {
 
     
     return ( 
-        <div className="bg-light m-4">
+        <div className="new">
            
             {orgSer.map((ser, key)=>(       
-                <div className="m-4" key={ser._id}>
-                    <table className="table bg-light m-2">
-                        <tbody className="">
+                <div className="" key={ser._id}>
+                    <table className="table">
+                        <tbody>
                             <tr key={ser.sp_id} >
                                 <td>
-                            <Link style={{ textDecoration: 'none' }} to={`/servicesDetails/${ser.sp_id}`} state={{ ser: ser }}><h5>{ser.companyName}</h5></Link>
+                                    <div className='container'>
+                                    
+                                    <div className='part1'>
+                                    <img className="sp_image" src={ser.image} />
+                                    </div>
+                                    <div className='part2'>
 
-                                    <p>
-                                        {ser.owner}<br></br>
-                                        by {ser.phone}<br></br>
-                                        {ser.email}<br></br>
-                                    </p> 
-                                   
+                            <Link style={{ textDecoration: 'none' }} to={`/servicesDetails/${ser.sp_id}`} state={{ ser: ser }}><h3>{ser.companyName}</h3></Link>
+
+                                    
+                                    <h5>{ser.owner}</h5>
+                                    <h5>{ser.phone}</h5>
+                                    <h5>{ser.email}</h5>
+
+                                    </div>
+
+                                    </div>
                                     </td>
                             </tr> <br/>
                         </tbody>

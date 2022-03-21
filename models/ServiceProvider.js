@@ -33,16 +33,12 @@ const serviceProviderSchema= new mongoose.Schema({
         type:String,
         required:[true, "Please enter the Address"]
     },
-    deal:{
-        type:String
-    },
+   
     city:{
         type:String,
         required:[true, "Please enter the city"]
     },
-    message:{
-        type:String
-    },
+   
     image:{
         type:String
     },

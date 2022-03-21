@@ -61,7 +61,7 @@ useEffect(()=>{
 
 
   return (
-    <div className="App">
+  
       
       <Router>
           <Header/>
@@ -71,7 +71,7 @@ useEffect(()=>{
       </Router>
       
 
-    </div>
+  
   );
 }
 

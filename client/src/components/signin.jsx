@@ -31,7 +31,7 @@ const SignIn = () => {
 
 
         const target = e.target;
-        console.log(target);
+  
 
 
         if(target.id==="inputEmail"){
@@ -45,8 +45,10 @@ const SignIn = () => {
             s.type="SP";
         }else{    
             s.type="C";
-        }  
+        } 
+
     }
+    console.log(s);
 
     
 
@@ -65,7 +67,7 @@ const SignIn = () => {
                     if(s.type==="SP"){
                         navigate("/serviceProvider" , {state: s.username})
                     }else{
-                        navigate("/");
+                        navigate("/home");
                     }
                 }
             }else{

@@ -15,8 +15,7 @@ const LoginSchema = mongoose.Schema({
     },
 
     type:{
-        type:String,
-        required: [true, "Please Enter the Type of User"]
+        type:String
     }
 
 });
