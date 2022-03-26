@@ -8,6 +8,7 @@ import ServiceDetail from './serviceDetails.jsx';
 import SignIn from './signin.jsx';
 import ServiceProvider from './serviceProDetails.jsx';
 import AddService from './addService.jsx';
+import Chat from './chat.jsx';
 
 
 
@@ -23,6 +24,8 @@ const Routess = ({services, onUpdate, onDelete, onViewMessage, newService, addTo
             <Route path="/location" exact element={<Location/>} />
             <Route path="/services" exact element={<Services services={services}/>} />
             <Route path="/servicesDetails/:id" exact element={<ServiceDetail/>} />
+            <Route path="/chat" exact element={<Chat/>} />
+
             <Route path="/serviceProvider" exact element={<ServiceProvider services={services} />}/>
             <Route path="/addService" exact element={<AddService newService={newService} addToDB={addToDB}/>}/>
             

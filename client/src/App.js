@@ -65,9 +65,9 @@ useEffect(()=>{
       
       <Router>
           <Header/>
-        <Container>
+        {/* <Container> */}
           <Routess login={login} services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews} newService={newService} addToDB={handleAdd}></Routess>
-        </Container>
+        {/* </Container> */}
       </Router>
       
 

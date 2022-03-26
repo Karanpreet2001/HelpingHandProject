@@ -13,8 +13,11 @@ const Header = () => {
           <Navbar.Brand href="#home" className="navTitle">Helping Hand</Navbar.Brand>
           
           <Nav className="ml-auto">
-            {/* <Nav.Link href="/">Home</Nav.Link> */}
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contact">Contact</Nav.Link>
+            <Nav.Link href="/chat">Chat</Nav.Link>
+ 
+
             <Nav.Link href="/signin" className="signInBtn">Sign In</Nav.Link>
           </Nav>
           </Container>
