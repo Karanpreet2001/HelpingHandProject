@@ -6,6 +6,8 @@ const cors= require("cors");
 
 const ServiceProvider=require("./models/ServiceProvider.js");
 const Login = require("./models/login.js");
+const Conversation = require("./models/conversation");
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -200,6 +202,37 @@ app.delete("/api/SPInfo/:id",async(req,res)=>{
         console.log(err);
     }
 });
+
+
+
+app.post("/api/conversation", async(req,res)=>{
+
+    const{serPhone, user}=req.body;
+
+    const conversation = new Conversation({
+        members:[user,serPhone]
+    });
+
+    try{
+
+        await mongoose.connect(url);
+
+        conversation.save((err)=>{
+            if(err)
+            console.log(err);
+
+            else{
+                res.send(conversation);
+                console.log("The document is inserted");
+                mongoose.connection.close();
+            }
+        })
+
+
+    }catch(err){
+        console.log(err);
+    }
+})
 
 app.get('/', ()=> {
     return "Server up and running."

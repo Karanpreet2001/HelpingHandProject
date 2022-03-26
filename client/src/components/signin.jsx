@@ -64,10 +64,12 @@ const SignIn = () => {
 
                 if(data[i].username===s.username && data[i].password===s.password && data[i].type===s.type){
 
+                  
                     if(s.type==="SP"){
+                        
                         navigate("/serviceProvider" , {state: s.username})
                     }else{
-                        navigate("/home");
+                        navigate("/home",{state: s.password});
                     }
                 }
             }else{

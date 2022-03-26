@@ -10,7 +10,8 @@ const Location = (props) => {
     const [service,setService]=useState("");
     const location = useLocation();
 
-    const data = location['state'];
+    const user = location.state.user;
+    const data = location.state.finalVal;
 
     const handleChange=(e)=>{
         const target=e.target;
@@ -25,7 +26,7 @@ const Location = (props) => {
             <h1>Which Service are you looking for in {data}?</h1>
             <input type="text"  id="location" className="form-control" onChange={handleChange} />
 
-            <Link to={"/services"} state={{data:data,service:service}}>Submit</Link>
+            <Link to={"/services"} state={{data:data,service:service,user:user}}>Submit</Link>
                 
             </div>
         </Container>

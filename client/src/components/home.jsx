@@ -3,8 +3,14 @@ import {useNavigate} from "react-router-dom";
 import {Container, Form, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import "../styles/home.css";
+import { useLocation } from 'react-router';
 
-const Home = ( props ) => {
+
+const Home = ( ) => {
+
+
+    const location = useLocation();
+    const user= location["state"];
 
     const [data] = useState([
         {
@@ -24,7 +30,7 @@ const Home = ( props ) => {
 
     async function SubmitBtn(e) {
         e.preventDefault();
-        navigate("/location", {state: finalVal});
+        navigate("/location", {state: {user, finalVal}});
     }
 
     return ( 

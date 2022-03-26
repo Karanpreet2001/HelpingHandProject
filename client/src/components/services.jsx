@@ -11,7 +11,7 @@ const Services = ({services}) => {
     // const [orgService, setOrgService]=useState([]);
 
     // const{data}= location.state;
-    const{data,service}=location.state;
+    const{data,service,user}=location.state;
 
     // let orgService;
 
@@ -39,7 +39,7 @@ const Services = ({services}) => {
                                     </div>
                                     <div className='part2'>
 
-                            <Link style={{ textDecoration: 'none' }} to={`/servicesDetails/${ser.sp_id}`} state={{ ser: ser }}><h3>{ser.companyName}</h3></Link>
+                            <Link style={{ textDecoration: 'none' }} to={`/servicesDetails/${ser.sp_id}`} state={{ ser: ser, user:user }}><h3>{ser.companyName}</h3></Link>
 
                                     
                                     <h5>{ser.owner}</h5>
