@@ -73,7 +73,7 @@
 .boxBottom{
     display: flex;
     align-self: center;
-    margin-top: 10%;
+   
    
 }
 .chatMessageBox{
@@ -89,5 +89,10 @@
     width: 70px;
     height: 40px;
     background-color: rgb(163, 177, 177);
-    margin-top: 25px;
+  
+}
+.randomMessage{
+    font-size: 3em;
+    color: rgb(86, 86, 86);
+    padding-top: 15px;
 }

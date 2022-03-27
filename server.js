@@ -93,6 +93,25 @@ app.post("/api/SPInfo", async(req,res)=>{
 });
 
 
+app.get("/api/SPInfo/:servContact", async (req,res)=>{
+
+    try{
+
+        await mongoose.connect(url);
+
+        const user =  await ServiceProvider.find({
+            phone:req.params.servContact
+        });
+       -
+        res.status(200).json(user);
+
+    }catch(err){
+        console.log(err);
+    }
+    
+});
+
+
 app.post("/api/Login", async(req,res)=>{
 
 
@@ -233,6 +252,30 @@ app.post("/api/conversation", async(req,res)=>{
         console.log(err);
     }
 })
+
+
+app.get("/api/conversation/:userId", async(req,res)=>{
+
+   
+
+    try{
+
+        await mongoose.connect(url);
+
+        const conversation = await Conversation.find({
+            members:{$in:[req.params.userId]}
+        });
+
+        res.send(conversation);
+
+
+    }catch(err){
+        console.log(err);
+    }
+})
+
+
+
 
 app.get('/', ()=> {
     return "Server up and running."
