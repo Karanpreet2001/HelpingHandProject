@@ -1,8 +1,9 @@
 import React from 'react';
 
 
-const Message = () => {
+const Message = ({nessage, own}) => {
 
+    
 
     return ( <div className='message'>
             <div className='messageTop'>

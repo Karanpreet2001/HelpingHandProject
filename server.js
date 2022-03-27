@@ -7,7 +7,8 @@ const cors= require("cors");
 const ServiceProvider=require("./models/ServiceProvider.js");
 const Login = require("./models/login.js");
 const Conversation = require("./models/conversation");
-
+const Message = require("./models/messages.js");
+const User= require("./models/users");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -274,8 +275,107 @@ app.get("/api/conversation/:userId", async(req,res)=>{
     }
 })
 
+app.post("/api/message", async(req,res)=>{
+   
+   
+    const {convId, sender, text}=req.body;
+
+    const message = new Message({
+        convId:convId,
+        sender:sender,
+        text:text
+    });
+
+    try{
+
+        await mongoose.connect(url);
+
+        message.save((err)=>{
+            if(err)
+                console.log(err);
+            else{
+                res.send(message);
+                console.log("The document is inserted");
+                mongoose.connection.close();
+            }
+        });
+    }catch(err){
+        console.log(err);
+    }
+})
 
 
+app.get("/api/message/:convId", async(req,res)=>{
+
+    try{
+
+        await mongoose.connect(url);
+
+        const messages = await Message.find({
+            convId:req.params.convId
+        });
+
+        res.status(200).json(messages);
+
+    }catch(err){
+        console.log(err);
+    }
+
+})
+
+
+app.get("/api/message/:", async(req,res)=>{
+
+    try{
+
+        await mongoose.connect(url);
+
+        const messages = await Message.find({
+            convId:req.params.convId
+        });
+
+        res.status(200).json(messages);
+
+    }catch(err){
+        console.log(err);
+    }
+
+})
+
+
+app.post("/api/user", async(req,res)=>{
+
+    const {name, age, phone, image, email, password}= req.body;
+
+
+    const user = new User({
+        name:name,
+        age:age,
+        phone:phone,
+        image:image,
+        email:email,
+        password:password
+
+    });
+
+    try{
+
+        await mongoose.connect(url);
+
+        user.save(err=>{
+            if(err)
+            console.log(err);
+            else{
+                res.send(user);
+                mongoose.connection.close();
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+    }
+
+})
 
 app.get('/', ()=> {
     return "Server up and running."

@@ -8,7 +8,7 @@ const Chat = () => {
 
     const contact= 6047251852;
     const [currentChat, setCurrentChat]= useState(null);
-
+    const [messages, setMessages] = useState([]);
     const [conversation,setConversation]=useState([]);
 
     useEffect(()=>{
@@ -18,6 +18,12 @@ const Chat = () => {
     },[]);
 
     console.log(currentChat);
+
+    useEffect(()=>{
+        axios.get("http://localhost:5000/api/conversation/"+currentChat._id)
+        .then(resp=>setMessages(resp.data))
+        .catch(err=>console.log(err));
+    },[currentChat])
 
     return ( 
     <div className='chat'>
@@ -36,8 +42,12 @@ const Chat = () => {
                 <div className='chatBoxWrapper'>
                  {currentChat ? 
                    <> <div className="boxTop">
+                      {
+                          messages.map(m=>{
+                            <Message message={m} own={m.sender===contact}/>
+                          })
+                      } 
                        
-                        <Message/>
                        
                     
 
