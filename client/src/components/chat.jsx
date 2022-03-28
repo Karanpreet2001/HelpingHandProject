@@ -20,7 +20,7 @@ const Chat = () => {
     console.log(currentChat);
 
     useEffect(()=>{
-        axios.get("http://localhost:5000/api/conversation/"+currentChat._id)
+        axios.get("http://localhost:5000/api/conversation/"+currentChat?._id)
         .then(resp=>setMessages(resp.data))
         .catch(err=>console.log(err));
     },[currentChat])

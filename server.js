@@ -324,7 +324,7 @@ app.get("/api/message/:convId", async(req,res)=>{
 })
 
 
-app.get("/api/message/:", async(req,res)=>{
+app.get("/api/message/:convId", async(req,res)=>{
 
     try{
 
@@ -370,6 +370,26 @@ app.post("/api/user", async(req,res)=>{
                 mongoose.connection.close();
             }
         })
+
+    }catch(err){
+        console.log(err);
+    }
+
+})
+
+app.get("/api/user/:phone", async(req,res)=>{
+
+
+    try{
+
+        await mongoose.connect(url);
+
+        const user = User.find({
+            phone:req.params.phone
+        });
+
+        res.send(user);
+        mongoose.connection.close();
 
     }catch(err){
         console.log(err);
