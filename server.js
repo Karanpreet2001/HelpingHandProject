@@ -103,7 +103,7 @@ app.get("/api/SPInfo/:servContact", async (req,res)=>{
         const user =  await ServiceProvider.find({
             phone:req.params.servContact
         });
-       -
+       
         res.status(200).json(user);
 
     }catch(err){
@@ -305,24 +305,6 @@ app.post("/api/message", async(req,res)=>{
 })
 
 
-app.get("/api/message/:convId", async(req,res)=>{
-
-    try{
-
-        await mongoose.connect(url);
-
-        const messages = await Message.find({
-            convId:req.params.convId
-        });
-
-        res.status(200).json(messages);
-
-    }catch(err){
-        console.log(err);
-    }
-
-})
-
 
 app.get("/api/message/:convId", async(req,res)=>{
 
@@ -333,8 +315,9 @@ app.get("/api/message/:convId", async(req,res)=>{
         const messages = await Message.find({
             convId:req.params.convId
         });
-
-        res.status(200).json(messages);
+        // console.log(messages);
+        res.send(messages);
+      
 
     }catch(err){
         console.log(err);
@@ -384,12 +367,13 @@ app.get("/api/user/:phone", async(req,res)=>{
 
         await mongoose.connect(url);
 
-        const user = User.find({
+        const user = await User.find({
             phone:req.params.phone
         });
 
         res.send(user);
-        mongoose.connection.close();
+    
+        
 
     }catch(err){
         console.log(err);
