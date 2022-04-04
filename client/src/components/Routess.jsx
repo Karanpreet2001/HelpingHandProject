@@ -9,6 +9,7 @@ import SignIn from './signin.jsx';
 import ServiceProvider from './serviceProDetails.jsx';
 import AddService from './addService.jsx';
 import Chat from './chat.jsx';
+import Deals from './fixADeals.jsx';
 
 
 
@@ -28,7 +29,7 @@ const Routess = ({contact, services, onUpdate, onDelete, onViewMessage, newServi
 
             <Route path="/serviceProvider" exact element={<ServiceProvider services={services} />}/>
             <Route path="/addService" exact element={<AddService newService={newService} addToDB={addToDB}/>}/>
-            
+            <Route path='/fixADeal' exact element={<Deals/>}/>
         </Routes>
     </div> );
 }

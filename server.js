@@ -9,6 +9,8 @@ const Login = require("./models/login.js");
 const Conversation = require("./models/conversation");
 const Message = require("./models/messages.js");
 const User= require("./models/users");
+const Deals= require("./models/deals");
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -360,7 +362,59 @@ app.post("/api/user", async(req,res)=>{
 
 })
 
-app.get("/api/user/:phone", async(req,res)=>{
+app.post("/api/deals", async(req,res)=>{
+
+    const {servPhone, userPhone, date, message}= req.body;
+
+
+    const deal = new Deals({
+        servPhone:servPhone,
+        userPhone:userPhone,
+        date:date,
+        message:message
+    });
+
+    try{
+
+        await mongoose.connect(url);
+
+        deal.save(err=>{
+            if(err)
+            console.log(err);
+            else{
+                res.send(deal);
+                mongoose.connection.close();
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+    }
+
+});
+
+app.get("/api/deals/:servPhone", async(req,res)=>{
+
+
+    try{
+
+        await mongoose.connect(url);
+
+        const deal = await Deals.find({
+            servPhone:req.params.servPhone
+        });
+
+        res.send(deal);
+    
+        
+
+    }catch(err){
+        console.log(err);
+    }
+
+})
+
+app.get("/api/users/:phone", async(req,res)=>{
 
 
     try{
