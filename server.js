@@ -16,7 +16,7 @@ app.use(cors());
 
 
 
-const url="mongodb://localhost:27017/HelpingHandDB";
+const url="mongodb+srv://admin:admin@helpinghand.chfvr.mongodb.net/HelpingHandDB?retryWrites=true&w=majority";
 
 app.get("/api/SPInfo", async(req,res)=>{
 
@@ -149,16 +149,14 @@ app.post("/api/Login", async(req,res)=>{
 
 app.get("/api/Login", async(req,res)=>{
 
-   
-
     try{
-
         await mongoose.connect(url);
 
         Login.find((err,login)=>{
         if(err){
             console.log(err);
         }else{
+            console.log(login)
             res.send(login);
             
         }
