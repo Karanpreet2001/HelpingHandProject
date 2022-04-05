@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const ServiceDetail = () => {
@@ -12,19 +12,20 @@ const ServiceDetail = () => {
 
     const startChat=(serPhone)=>{
 
-        
+         
         const New ={
             serPhone:serPhone,
             user:user
         };
 
-        
-
-
         const {data} = axios.post("http://localhost:5000/api/conversation", New );
-
         console.log(data);
+    }
+    let navigate = useNavigate();
 
+    const deal=(serPhone)=>{
+
+        navigate("/fixADeal", {state:{user,serPhone}});
     }
 
     return (
@@ -41,8 +42,8 @@ const ServiceDetail = () => {
                 <h6>{ser.phone}</h6>
                 <h6>{ser.email}</h6>
                
-               <button className="" onClick={startChat(ser.phone)}>Start Chat</button>
-               <button className="">Make A Deal</button>
+               <button className="" onClick={()=>startChat(ser.phone)}>Start Chat</button>
+               <button className="" onClick={()=>deal(ser.phone)}>Make A Deal</button>
 
             </div>
             

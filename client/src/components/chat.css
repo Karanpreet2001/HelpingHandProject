@@ -96,3 +96,21 @@
     color: rgb(86, 86, 86);
     padding-top: 15px;
 }
+
+.message.own{
+    align-items: flex-end;
+}
+
+.message.own .messageText{
+    color: black;
+    background-color: rgb(204, 200, 199);
+}
+
+
+
+
+.boxTop{
+    height: 100%;
+    overflow-y: scroll;
+}
+

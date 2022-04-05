@@ -9,7 +9,7 @@ import axios from "axios";
 function App() {
 
   
-
+let contact;
 const [services,setServices]=useState([]);
 const [newService,setNewService]=useState({});
 const [login, setLogin] = useState({});
@@ -66,7 +66,7 @@ useEffect(()=>{
       <Router>
           <Header/>
         {/* <Container> */}
-          <Routess login={login} services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews} newService={newService} addToDB={handleAdd}></Routess>
+          <Routess contact ={contact} login={login} services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews} newService={newService} addToDB={handleAdd}></Routess>
         {/* </Container> */}
       </Router>
       

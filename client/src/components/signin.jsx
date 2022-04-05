@@ -5,7 +5,7 @@ import { useLocation } from 'react-router';
 
 
 
-const SignIn = () => {
+const SignIn = ({contact}) => {
 
 
     const [data,setData]= useState([]);
@@ -64,10 +64,10 @@ const SignIn = () => {
 
                 if(data[i].username===s.username && data[i].password===s.password && data[i].type===s.type){
 
-                  
+                  contact = s.password;
                     if(s.type==="SP"){
                         
-                        navigate("/serviceProvider" , {state: s.username})
+                        navigate("/serviceProvider" , {state: s.username});
                     }else{
                         navigate("/home",{state: s.password});
                     }

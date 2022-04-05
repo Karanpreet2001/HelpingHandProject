@@ -1,16 +1,29 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import {format} from "timeago.js";
+import "./chat.css";
 
+const Message = ({message, own}) => {
 
-const Message = ({nessage, own}) => {
+    const [userImage, setUserImage]= useState([]);
+    console.log(message,own);
+    console.log(message.sender,own);
+ 
+    useEffect(async()=>{
 
+        const resp= await axios.get("http://localhost:5000/api/user/"+message.sender);
+        
+        setUserImage(resp.data);
+
+    },[message]);
     
 
-    return ( <div className='message'>
+    return ( <div className={own ? "message own":"message"}>
             <div className='messageTop'>
-                <img className='messageImg' src="https://media.gettyimages.com/photos/actor-katie-holmes-poses-for-a-photo-with-lobby-signage-during-img-picture-id917483058?s=612x612"/>
-                <p className='messageText'>kakk akakk aka kak kak</p>
+                <img className='messageImg' src={userImage[0]?.image}/>
+                <p className='messageText'>{message.text}</p>
             </div>
-            <div className='messageBottom'>3-02-2020</div>
+            <div className='messageBottom'>{format(message.createdAt)}</div>
     </div> );
 }
  

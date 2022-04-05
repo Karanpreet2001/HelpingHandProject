@@ -9,6 +9,8 @@ const Login = require("./models/login.js");
 const Conversation = require("./models/conversation");
 const Message = require("./models/messages.js");
 const User= require("./models/users");
+const Deals= require("./models/deals");
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -103,7 +105,7 @@ app.get("/api/SPInfo/:servContact", async (req,res)=>{
         const user =  await ServiceProvider.find({
             phone:req.params.servContact
         });
-       -
+       
         res.status(200).json(user);
 
     }catch(err){
@@ -303,24 +305,6 @@ app.post("/api/message", async(req,res)=>{
 })
 
 
-app.get("/api/message/:convId", async(req,res)=>{
-
-    try{
-
-        await mongoose.connect(url);
-
-        const messages = await Message.find({
-            convId:req.params.convId
-        });
-
-        res.status(200).json(messages);
-
-    }catch(err){
-        console.log(err);
-    }
-
-})
-
 
 app.get("/api/message/:convId", async(req,res)=>{
 
@@ -331,8 +315,9 @@ app.get("/api/message/:convId", async(req,res)=>{
         const messages = await Message.find({
             convId:req.params.convId
         });
-
-        res.status(200).json(messages);
+        // console.log(messages);
+        res.send(messages);
+      
 
     }catch(err){
         console.log(err);
@@ -375,19 +360,72 @@ app.post("/api/user", async(req,res)=>{
 
 })
 
-app.get("/api/user/:phone", async(req,res)=>{
+app.post("/api/deals", async(req,res)=>{
+
+    const {servPhone, userPhone, date, message}= req.body;
+
+
+    const deal = new Deals({
+        servPhone:servPhone,
+        userPhone:userPhone,
+        date:date,
+        message:message
+    });
+
+    try{
+
+        await mongoose.connect(url);
+
+        deal.save(err=>{
+            if(err)
+            console.log(err);
+            else{
+                res.send(deal);
+                mongoose.connection.close();
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+    }
+
+});
+
+app.get("/api/deals/:servPhone", async(req,res)=>{
 
 
     try{
 
         await mongoose.connect(url);
 
-        const user = User.find({
+        const deal = await Deals.find({
+            servPhone:req.params.servPhone
+        });
+
+        res.send(deal);
+    
+        
+
+    }catch(err){
+        console.log(err);
+    }
+
+})
+
+app.get("/api/users/:phone", async(req,res)=>{
+
+
+    try{
+
+        await mongoose.connect(url);
+
+        const user = await User.find({
             phone:req.params.phone
         });
 
         res.send(user);
-        mongoose.connection.close();
+    
+        
 
     }catch(err){
         console.log(err);
