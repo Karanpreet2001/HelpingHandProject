@@ -34,10 +34,8 @@ const SignIn = ({contact}) => {
             
             let data = resp.data;
             for(var i=0; i<data.length;i++){
-                console.log("username ", username, " password ", password, " type ", type);
 
                 if(username !=="" && password !==""){
-                    console.log(data[i].username)
                     if(data[i].username===username && data[i].password===password && data[i].type===type){
                       contact = password;
                       

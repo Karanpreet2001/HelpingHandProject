@@ -30,26 +30,17 @@ const ServiceDetail = () => {
 
     return (
         <div className="">
-        <div className="">
-           
-           
-            <div className="">
-                
-                <h3>{ser.companyName}</h3>
-                <br></br>
-                <h6>{ser.owner}</h6>
-                <p>{ser.services}</p>
-                <h6>{ser.phone}</h6>
-                <h6>{ser.email}</h6>
-               
-               <button className="" onClick={()=>startChat(ser.phone)}>Start Chat</button>
-               <button className="" onClick={()=>deal(ser.phone)}>Make A Deal</button>
-
-            </div>
+            <h3>{ser.companyName}</h3>
+            <br></br>
+            <h6>{ser.owner}</h6>
+            <p>{ser.services}</p>
+            <h6>{ser.phone}</h6>
+            <h6>{ser.email}</h6>
             
-        </div>
-    </div>
+            <button className="" onClick={()=>startChat(ser.phone)}>Start Chat</button>
+            <button className="" onClick={()=>deal(ser.phone)}>Make A Deal</button>
 
+        </div>
      );
 }
  
