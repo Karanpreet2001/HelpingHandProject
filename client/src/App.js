@@ -45,19 +45,19 @@ useEffect(()=>{
 
     }
 
-    const handleAdd=()=>{
+    // const handleAdd=()=>{
 
-      const {data} = axios.post("http://localhost:5000/api/SPInfo/",newService);
-      console.log(data);
+    //   const {data} = axios.post("http://localhost:5000/api/SPInfo/",newService);
+    //   console.log(data);
 
-      if(typeof data ==="object"){
-        const service = data;
-        const newServices = [...services, service];
-        setServices([...newServices]);
-      }else{
-        console.log("Can Not Add A SERVICE");
-      }
-    }
+    //   if(typeof data ==="object"){
+    //     const service = data;
+    //     const newServices = [...services, service];
+    //     setServices([...newServices]);
+    //   }else{
+    //     console.log("Can Not Add A SERVICE");
+    //   }
+    // }
 
 
   return (
@@ -66,7 +66,7 @@ useEffect(()=>{
       <Router>
           <Header/>
         {/* <Container> */}
-          <Routess contact ={contact} login={login} services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews} newService={newService} addToDB={handleAdd}></Routess>
+          <Routess contact ={contact} login={login} services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews} newService={newService} ></Routess>
         {/* </Container> */}
       </Router>
       

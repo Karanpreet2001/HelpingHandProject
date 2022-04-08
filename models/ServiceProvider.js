@@ -19,24 +19,24 @@ const serviceProviderSchema= new mongoose.Schema({
     },
     services:{
         type:String,
-        required:[true, "Please enter the Services"]
+      
     },
     phone:{
         type:String,
-        required:[true, "Please enter the Phone Number"]
+      
     },
     email:{
         type:String,
-        required:[true, "Please enter the E-Mail"]
+     
     },
     address:{
         type:String,
-        required:[true, "Please enter the Address"]
+     
     },
    
     city:{
         type:String,
-        required:[true, "Please enter the city"]
+       
     },
    
     image:{

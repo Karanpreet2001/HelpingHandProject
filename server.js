@@ -18,7 +18,8 @@ app.use(cors());
 
 
 
-const url="mongodb+srv://admin:admin@helpinghand.chfvr.mongodb.net/HelpingHandDB?retryWrites=true&w=majority";
+// const url="mongodb+srv://admin:admin@helpinghand.chfvr.mongodb.net/HelpingHandDB?retryWrites=true&w=majority";
+const url ="mongodb://localhost:27017/HelpingHandDB";
 
 app.get("/api/SPInfo", async(req,res)=>{
 
@@ -54,7 +55,7 @@ app.post("/api/SPInfo", async(req,res)=>{
 
 
         console.log(req.body);
-        const{sp_id,username, occupation,owner,city, message, companyName, services, phone, email,address, deal, image}= req.body;
+        const{sp_id,username, occupation,owner,city, companyName, services, phone, email,address, image}= req.body;
 
 
         const serviceProvider= new ServiceProvider({
@@ -65,10 +66,10 @@ app.post("/api/SPInfo", async(req,res)=>{
             phone: phone, 
             email: email,
             address: address, 
-            deal: deal,
+            
             image: image,
             city:city,
-            message:message,
+        
             occupation:occupation,
             username:username
         });
@@ -77,14 +78,14 @@ app.post("/api/SPInfo", async(req,res)=>{
         await mongoose.connect(url);
         console.log("Database connected");
 
-        serviceProvider.save((err)=>{
+        await serviceProvider.save((err)=>{
             if(err){
                 console.log(err);
                 res.send(err);
 
             }else{
-                console.log("This document is inserted")
                 res.send(serviceProvider);
+                console.log("This document is inserted")
                 mongoose.connection.close();
             }
         })

@@ -1,9 +1,10 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState} from 'react';
 
 
-const AddService = ({newService, addToDB}) => {
+const AddService = ({newService}) => {
 
-
+            const [reply, setReplay] = useState();
 
             const handleChange = (e)=>{
 
@@ -29,6 +30,8 @@ const AddService = ({newService, addToDB}) => {
                     newService.city= target.value;
                     if(target.id==="username")
                     newService.username= target.value;
+                    if(target.id==="image")
+                    newService.image= target.value;
 
                     console.log(newService);
                   
@@ -36,11 +39,24 @@ const AddService = ({newService, addToDB}) => {
             
 
 
-            const handleSubmit = (e)=>{
+            const handleSubmit = async(e)=>{
                     e.preventDefault();
                     console.log("Submit");
+
+                    const {data} = await axios.post("http://localhost:5000/api/SPInfo",newService );
+                    setReplay("Your Profile is registered");
                     
             }
+
+            const addToDB = async(e)=>{
+                e.preventDefault();
+                console.log("Submit");
+
+               
+                
+        }
+
+            
 
     return (  
         <div>
@@ -74,12 +90,16 @@ const AddService = ({newService, addToDB}) => {
                 <label htmlFor="city">City</label>
                 <input type="text" className="text" id="city" value={newService.city} onChange={handleChange}/><br /> <br />
 
+                <label htmlFor="image">Image</label>
+                <input type="text" className="text" id="image" value={newService.image} onChange={handleChange}/><br /> <br />
+
                 <label htmlFor="username">Username</label>
                 <input type="text" className="text" id="username" value={newService.username} onChange={handleChange}/> <br /> <br />
 
                 <button onClick={()=>addToDB()}>Add</button>
-
+                
             </form>
+            {reply}
         </div>
     );
 }

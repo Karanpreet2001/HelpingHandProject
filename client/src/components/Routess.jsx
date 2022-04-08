@@ -28,7 +28,7 @@ const Routess = ({contact, services, onUpdate, onDelete, onViewMessage, newServi
             <Route path="/chat" exact element={<Chat contact={contact}/>} />
 
             <Route path="/serviceProvider" exact element={<ServiceProvider services={services} />}/>
-            <Route path="/addService" exact element={<AddService newService={newService} addToDB={addToDB}/>}/>
+            <Route path="/addService" exact element={<AddService newService={newService} />}/>
             <Route path='/fixADeal' exact element={<Deals/>}/>
         </Routes>
     </div> );
