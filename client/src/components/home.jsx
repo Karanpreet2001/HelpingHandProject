@@ -45,7 +45,7 @@ const Home = ( ) => {
                         <div className='col-8'>
                             <h1 className='mt-5 heading'>Helping Hand</h1>
                         </div>
-                        <p className="text-center">Add a 4-5 word tagline here.</p>
+                        <p className="text-center">Best services you can get.</p>
                         <hr/>
                     </div>
                 </section>

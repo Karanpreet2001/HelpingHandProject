@@ -1,46 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { Container, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import "../styles/serviceDetails.css";
 
 const ServiceDetail = () => {
 
-
     const location = useLocation();
+    let navigate = useNavigate();
     const {ser,user}= location.state;
 
-    console.log(ser);
-
-    const startChat=(serPhone)=>{
-
-         
+    const startChat=(e)=>{
+        e.preventDefault();
         const New ={
-            serPhone:serPhone,
+            serPhone:ser.serPhone,
             user:user
         };
-
         const {data} = axios.post("http://localhost:5000/api/conversation", New );
         console.log(data);
     }
-    let navigate = useNavigate();
 
-    const deal=(serPhone)=>{
-
-        navigate("/fixADeal", {state:{user,serPhone}});
+    const deal=(e)=>{
+        e.preventDefault();
+        navigate("/fixADeal", {state:{user: user, serPhone: ser.serPhone}});
     }
 
     return (
-        <div className="">
-            <h3>{ser.companyName}</h3>
-            <br></br>
-            <h6>{ser.owner}</h6>
-            <p>{ser.services}</p>
-            <h6>{ser.phone}</h6>
-            <h6>{ser.email}</h6>
-            
-            <button className="" onClick={()=>startChat(ser.phone)}>Start Chat</button>
-            <button className="" onClick={()=>deal(ser.phone)}>Make A Deal</button>
-
-        </div>
+        <Container >
+            <Card className="serviceDetailsCard">
+                <Card.Img variant="top" src={ser.image} />
+                <Card.Body>
+                    <Card.Title>{ser.owner}</Card.Title>
+                    <Card.Text>{ser.companyName}</Card.Text>
+                    <Card.Text>{ser.services}</Card.Text>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                    <ListGroupItem>{ser.phone}</ListGroupItem>
+                    <ListGroupItem>{ser.email}</ListGroupItem>
+                </ListGroup>
+                <Card.Body>
+                    <Button onClick={e => deal(e)} style={{marginRight: "1em"}}>Book appointment</Button>
+                    <Button onClick={e => startChat(e)}>Chat</Button>
+                </Card.Body>
+            </Card>
+        </Container>
      );
 }
  

@@ -10,7 +10,7 @@ const Header = () => {
 
         <Navbar bg="dark" variant="dark" className="py-3">
           <Container>
-          <Navbar.Brand href="#home" className="navTitle">Helping Hand</Navbar.Brand>
+          <Navbar.Brand href="/" className="navTitle">Helping Hand</Navbar.Brand>
           
           <Nav className="ml-auto">
             <Nav.Link href="/">Home</Nav.Link>
