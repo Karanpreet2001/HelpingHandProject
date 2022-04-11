@@ -5,6 +5,7 @@ import './App.css';
 import Routess from './components/Routess';
 import {BrowserRouter as Router} from 'react-router-dom';
 import axios from "axios";
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 
 function App() {
 
@@ -14,6 +15,15 @@ const [services,setServices]=useState([]);
 const [newService,setNewService]=useState({});
 const [login, setLogin] = useState({});
 
+const [loading, setLoading] = useState(false);
+
+useEffect(()=>{
+  setLoading(true);
+
+  setTimeout(()=>{
+      setLoading(false);
+  },4000);
+},[]);
 
 
 useEffect(()=>{
@@ -62,13 +72,21 @@ useEffect(()=>{
 
   return (
   
-      
-      <Router>
+    <>
+      {
+          loading ?
+         ( <div className='App'> <ClimbingBoxLoader color={"#aa8540"} loading={loading}  size={30} /></div>)
+          :
+
+          (<Router>
           <Header/>
         {/* <Container> */}
           <Routess contact ={contact} login={login} services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews} newService={newService} ></Routess>
         {/* </Container> */}
-      </Router>
+      </Router>)
+      }
+      
+      </>
       
 
   

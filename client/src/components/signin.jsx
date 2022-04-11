@@ -42,7 +42,7 @@ const SignIn = ({contact}) => {
                         if(type==="SP"){
                             navigate("/serviceProvider" , {state: username});
                         }else{
-                            navigate("/home",{state: password});
+                            navigate("/getcity",{state: password});
                         }
                     }
                 }else{
@@ -55,9 +55,13 @@ const SignIn = ({contact}) => {
         });   
     }
 
-    return ( <> <div className="d-flex justify-content-center align-items-center container ">
+    return ( <>
+ <div className="d-flex justify-content-center align-items-center container ">
+ <img src="https://media.istockphoto.com/vectors/register-account-submit-access-login-password-username-internet-vector-id1281150061?k=20&m=1281150061&s=612x612&w=0&h=wpCvmggedXRECWK-FVL98MMllubyevIrXuUu50fdCqE=" height="40%" width="40%" />
     <form>
-        <h3 className="display-5 text-center p-1">Log In</h3>
+
+        <h3 className="display-5 text" >LOG IN</h3>
+
         <div className="row mb-3">
             <label htmlFor="inputEmail" className="col-sm-2 col-form-label mx-3">Email</label>
             <div className="col-sm-10">

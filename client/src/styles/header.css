@@ -1,10 +1,97 @@
-.navTitle{
-    font-size: 1.5rem;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dosis&family=Fredoka:wght@300;500;600&family=Montserrat:wght@100&family=Roboto&family=Russo+One&family=Sacramento&family=Sansita+Swashed:wght@700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dosis&family=Fredoka:wght@300;500;600&family=Khand:wght@700&family=Montserrat:wght@100&family=Paytone+One&family=Playfair+Display:ital,wght@0,500;1,500&family=Poppins:wght@300;400&family=Roboto&family=Russo+One&family=Sacramento&family=Sansita+Swashed:wght@700&display=swap');
+
+nav{
+    background-color: rgb(20, 19, 19);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: "Dosis",sans-serif;
+    padding-top: 3px;  
+
+    padding-bottom: 5px;  
+    color: #edf0f1;   
+}
+nav h1{
+
+    text-align: center;
+    font-size: 3em;
+    font-weight: Bold 700;
+    margin: 0em;
+    padding: 3px;
+    margin-left: 70px;
+    cursor: pointer;
+    padding-left: 20px;
+    font-family: "Fredoka", sans-serif;
+    color: #edf0f1;  
+    transition: all 0.3s linear 0 ;
+    margin-right: auto;
+    text-transform:uppercase;
+
+   
 }
 
-.signInBtn{
-    background-color: blue;
-    color: white !important;
-    font-weight: bold;
-    border-radius: 5px;
+.nav-links{
+    margin: 0;
+    padding: 0%;
+    display: flex;
+    margin-left: 30px;
+
+
+
+}
+
+
+.nav-links li{
+    
+    list-style: none;
+  
+   padding-left: 10px;
+    
+    margin: 0%;
+}
+
+.nav-links li a{
+    display: block;
+    text-decoration: none;
+    color: #edf0f1;
+    padding: 1em ;
+    transition: all 0.3s ease 0s;
+    font-weight: bolder;
+    
+
+}
+
+.nav-links li a:hover{
+    color: #aa8540;
+    /* border-bottom: 2px solid rgba(0,136,169,1); */
+    
+    /* transition: all 0.3s linear; */
+
+}
+.cta button{
+    color: #edf0f1;
+    padding: 10px 16px 10px 15px ;
+    background-color: #aa8540;
+    border: 1px solid black;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    font-weight: bolder;
+    opacity: 1;
+   
+}
+.cta{
+   
+    margin-right: 90px;
+}
+button:hover{
+   
+    border-radius: 22px;
+    opacity: 0.9;
+
+    
 }

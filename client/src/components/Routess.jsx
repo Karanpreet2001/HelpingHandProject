@@ -10,6 +10,7 @@ import ServiceProvider from './serviceProDetails.jsx';
 import AddService from './addService.jsx';
 import Chat from './chat.jsx';
 import Deals from './fixADeals.jsx';
+import Intro from "./intro.jsx";
 
 
 
@@ -20,8 +21,10 @@ const Routess = ({contact, services, onUpdate, onDelete, onViewMessage, newServi
     return ( <div>
         
         <Routes>
-            <Route path="/home" element={<Home/>}></Route>
-            <Route path="/" element={<SignIn contact={contact}/>}></Route>
+            <Route path="/getcity" element={<Home/>}></Route>
+            <Route path="/signin" element={<SignIn contact={contact}/>}></Route>
+            <Route path="/" element={<Intro/>}></Route>
+
             <Route path="/location" exact element={<Location/>} />
             <Route path="/services" exact element={<Services services={services}/>} />
             <Route path="/servicesDetails/:id" exact element={<ServiceDetail/>} />
