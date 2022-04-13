@@ -12,12 +12,9 @@ const Message = ({message, own}) => {
  
     useEffect(async()=>{
 
-        const resp= await axios.get("http://localhost:5000/api/user/"+message.sender);
+        const resp= await axios.get("http://localhost:5000/api/users/"+message.sender);
         
-       
         setUserImage(resp.data);
-        
-
     },[message]);
 
 

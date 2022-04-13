@@ -15,7 +15,7 @@ const Conversation = ({conversation, currentUser}) => {
         const getUser = async()=>{
 
             try{
-              const res = await axios("http://localhost:5000/api/SPInfo/"+servContact);
+              const res = await axios.get("http://localhost:5000/api/users/"+servContact);
             
               setUserContact(res.data);
             }catch(err){
@@ -34,7 +34,7 @@ const Conversation = ({conversation, currentUser}) => {
     return ( <div className='conversationBox'>
 
     <img className='conversationImg' src={userContact[0]?.image}/>
-    <span className='conversationName'>{userContact[0]?.owner}</span>
+    <span className='conversationName'>{userContact[0]?.name}</span>
     </div> );
 }
  
