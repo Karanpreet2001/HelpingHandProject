@@ -4,10 +4,14 @@ import Message from './message';
 import "./chat.css";
 import axios from 'axios';
 import {io} from "socket.io-client";
+import { useLocation } from 'react-router-dom';
 
 const Chat = () => {
 
-    const contact = '6047251852';
+    const location = useLocation();
+
+    const contact = location.state.contact;
+    
     const [currentChat, setCurrentChat]= useState(null);
     const [messages, setMessages] = useState([]);
     const [conversation,setConversation]=useState([]);
@@ -68,7 +72,7 @@ const Chat = () => {
 
         const getMessages= async()=>{
 
-          const res= await axios.get("http://localhost:5000/api/message/"+currentChat._id)
+          const res= await axios.get("http://localhost:5000/api/message/"+currentChat?._id)
       
           setMessages(res.data);
         }

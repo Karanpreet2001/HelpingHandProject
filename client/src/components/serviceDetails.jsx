@@ -12,12 +12,20 @@ const ServiceDetail = () => {
 
     const startChat=(e)=>{
         e.preventDefault();
+        console.log(user);
+        navigate("/chat", {state:{contact:user}});
+
+    }
+
+    const makeConnection=(e)=>{
+        e.preventDefault();
         const New ={
             serPhone:ser.serPhone,
             user:user
         };
         const {data} = axios.post("http://localhost:5000/api/conversation", New );
         console.log(data);
+
     }
 
     const deal=(e)=>{
@@ -41,6 +49,8 @@ const ServiceDetail = () => {
                 <Card.Body>
                     <Button onClick={e => deal(e)} style={{marginRight: "1em"}}>Book appointment</Button>
                     <Button onClick={e => startChat(e)}>Chat</Button>
+                    <Button onClick={e => makeConnection(e)}>Connect</Button>
+
                 </Card.Body>
             </Card>
         </Container>

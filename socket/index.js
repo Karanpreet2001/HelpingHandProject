@@ -49,5 +49,5 @@ io.on("connection", (socket)=>{
         console.log("a user disconnected");
         removeUser(socket.id);
         io.emit("getUsers",contacts);
-    })
+    });
 });

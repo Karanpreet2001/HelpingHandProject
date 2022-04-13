@@ -50,7 +50,7 @@ const SignIn = ({contact}) => {
                       contact = password;
                       
                         if(type==="SP"){
-                            navigate("/serviceProvider" , {state: username});
+                            navigate("/serviceProvider" , {state: {username:username, password:password}});
                         }else{
                             navigate("/getcity",{state: password});
                         }

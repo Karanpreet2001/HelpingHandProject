@@ -10,7 +10,8 @@ import { useNavigate } from 'react-router-dom';
 const ServiceProvider = ({services,onUpdate, onDelete, onViewMessage}) => {
 
     const location=useLocation();
-    const data = location['state'];
+    const data = location.state.username;
+    const password= location.state.password;
     console.log(data);
 
     const navigate = useNavigate();
@@ -39,6 +40,10 @@ const ServiceProvider = ({services,onUpdate, onDelete, onViewMessage}) => {
         const {data} = axios.delete("http://localhost:5000/api/SPInfo/"+detail._id);
       }
 
+    }
+
+    const startChat=()=>{
+      navigate("/chat", {state:{contact:password}});
     }
 
 
@@ -89,9 +94,7 @@ const ServiceProvider = ({services,onUpdate, onDelete, onViewMessage}) => {
               
                
             
-{/* 
-<button style={myStyle} className="btn btn-secondary btn">Add New Service</button>  */}
-<Link to="/addService"><button type="button" style={myStyle} className="btn btn-primary m-2">Add New Service</button></Link>
+<button type="button" style={myStyle} onClick={()=>startChat()} className="btn btn-primary m-2">Chat</button>
 
 
     </div> );
