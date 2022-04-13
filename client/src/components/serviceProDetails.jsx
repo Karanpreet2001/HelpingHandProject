@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './main.css';
 import {useLocation} from "react-router";
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -10,6 +12,8 @@ const ServiceProvider = ({services,onUpdate, onDelete, onViewMessage}) => {
     const location=useLocation();
     const data = location['state'];
     console.log(data);
+
+    const navigate = useNavigate();
 
     const serviceProDetails = services.filter((service)=>service.username === data);
 
@@ -20,15 +24,28 @@ const ServiceProvider = ({services,onUpdate, onDelete, onViewMessage}) => {
             right: "30px",
           
     }
-    var name = serviceProDetails[0].owner;
+    // var name = serviceProDetails[0].owner;
 
   
+    const handleNewDelete=(detail)=>{
+      console.log("Delete is clicked");
+      console.log(detail._id);
+
+      // navigate("/dialog", {state:{id:detail._id}});
+      
+
+      if(window.confirm("Are you sure you want to delete?")){
+        
+        const {data} = axios.delete("http://localhost:5000/api/SPInfo/"+detail._id);
+      }
+
+    }
 
 
     return ( <div>
 
             
-                <div className='name'>Hi, <span className="names">{name}</span></div>
+                {/* <div className='name'>Hi, <span className="names">{name}</span></div> */}
 
                
             
@@ -57,7 +74,7 @@ const ServiceProvider = ({services,onUpdate, onDelete, onViewMessage}) => {
                     <td>{detail.services}</td>
                     <td>{detail.address}</td>
                     <td>{detail.phone}</td>
-                    <td> <button type="button" className="btn btn-danger btn" onClick={()=>onDelete(detail)}>Delete</button> &nbsp; <button type="button" className="btn btn-warning btn"onClick={()=>onUpdate(detail)}>Update</button> </td>
+                    <td> <button type="button" className="btn btn-danger btn" onClick={()=>handleNewDelete(detail)}>Delete</button> &nbsp; <button type="button" className="btn btn-warning btn"onClick={()=>onUpdate(detail)}>Update</button> </td>
                     </tr>
 
                 ))

@@ -55,7 +55,7 @@ app.post("/api/SPInfo", async(req,res)=>{
 
 
         console.log(req.body);
-        const{sp_id,username, occupation,owner,city, companyName, services, phone, email,address, image}= req.body;
+        const{sp_id,username, occupation,owner,city,password, companyName, services, phone, email,address, image}= req.body;
 
 
         const serviceProvider= new ServiceProvider({
@@ -66,7 +66,7 @@ app.post("/api/SPInfo", async(req,res)=>{
             phone: phone, 
             email: email,
             address: address, 
-            
+            password:password,
             image: image,
             city:city,
         

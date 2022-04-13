@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import {useNavigate} from "react-router-dom";
+import "../styles/addService.css";
+
 
 const SignIn = ({contact}) => {
 
@@ -24,6 +26,14 @@ const SignIn = ({contact}) => {
                 setType("SP");
             }
         }
+    }
+
+    const navigateToAddService=()=>{
+        navigate("/addService");
+    }
+
+    const navigateToCustomerReg=()=>{
+        navigate("/addService");
     }
     
      const checkUser=  (e)=>{
@@ -83,6 +93,12 @@ const SignIn = ({contact}) => {
         <div className="row">
             <div className="col-sm-10 offset-sm-4">
                 <button type="submit" className="btn btn-primary" onClick={checkUser}>Sign in</button>
+            </div>
+            <div className='navigateButton'>
+            <button className='btn btn-success' onClick={()=>navigateToAddService()}>Register as a Service Provider</button> &nbsp;
+            <button className='btn btn-secondary' onClick={()=>navigateToCustomerReg()}>Register as a Customer</button>
+
+
             </div>
         </div>
     </form>

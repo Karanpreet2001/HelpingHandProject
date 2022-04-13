@@ -43,7 +43,7 @@ const Home = ( ) => {
                             <img src="logo.png" alt="logo" className='img-fluid' width="200px"></img>
                         </div>
                         <div className='col-8'>
-                            <h1 className='mt-5 heading'>Helping Hand</h1>
+                            <h1 style={{color: "black"}} className='mt-5 heading'>Helping Hand</h1>
                         </div>
                         <p className="text-center">Best services you can get.</p>
                         <hr/>

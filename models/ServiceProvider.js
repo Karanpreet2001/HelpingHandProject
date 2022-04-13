@@ -49,6 +49,10 @@ const serviceProviderSchema= new mongoose.Schema({
     username:{
         type:String,
         required:[true, "Please enter the username"]
+    },
+    password:{
+        type:String,
+        required:[true, "Please enter the password"] 
     }
  
 });

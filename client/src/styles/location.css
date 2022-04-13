@@ -3,3 +3,39 @@
     margin: auto;
     margin-top: 100px;
 }
+
+.gridView{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 70px;
+    /* background-color: #2196f3; */
+    padding:10px;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 60px;
+    
+
+}
+
+.gridView > div{
+    background-color: black;
+    border: 1px solid black;
+    font-size: large;
+}
+
+.gridView > div:hover{
+    box-shadow: 0 8px 16px 0 rgba(6, 5, 5, 0.2), 0 10px 22px 0 rgb(0 0 0 / 19%);
+}
+
+img{
+    height: 100%;
+    width: 100%;
+}
+h4{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+}
+
