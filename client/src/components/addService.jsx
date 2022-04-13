@@ -46,7 +46,7 @@ const AddService = ({newService}) => {
                     console.log("Submit");
 
                     const {data} = await axios.post("http://localhost:5000/api/SPInfo",newService );
-                    setReplay("Your Profile is registered");
+                    
 
                     
             }
@@ -54,6 +54,7 @@ const AddService = ({newService}) => {
             const addToDB = async(e)=>{
                 e.preventDefault();
                 console.log("Submit");
+                setReplay("Your Profile is registered");
 
                
                 
@@ -127,10 +128,11 @@ const AddService = ({newService}) => {
                 </div>
                 </div>
                 <div className='forButton'>
-                <button className='formSubmit' onClick={()=>addToDB()}>Add</button>
+                <button className='formSubmit' onClick={(e)=>addToDB(e)}>Add</button>
                 </div>
+                {reply}
             </form>
-           {reply}
+           
         </div>
     );
 }
