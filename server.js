@@ -175,22 +175,6 @@ app.get("/api/Login", async(req,res)=>{
 
 //updating service provider
 
-// app.put("/api/SPInfo/:id", async(req, res)=>{
-//     try{
-
-//         let _id = req.params.id;
-//         _id=mongoose.Types.ObjectId(_id);
-
-//         await mongoose.connect(url);
-//         console.log("Database connected");
-
-//         ServiceProvider.updateOne(
-//         {_id:_id},
-//         {
-//             menu=
-//         })
-//     }
-// })
 
 
 

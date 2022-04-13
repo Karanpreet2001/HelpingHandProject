@@ -22,7 +22,7 @@ useEffect(()=>{
 
   setTimeout(()=>{
       setLoading(false);
-  },4000);
+  },3000);
 },[]);
 
 
@@ -80,9 +80,9 @@ useEffect(()=>{
 
           (<Router>
           <Header/>
-        {/* <Container> */}
+    
           <Routess contact ={contact} login={login} services={services} onUpdate={handleUpdate} onDelete={handleDelete} onViewMessage={handleViews} newService={newService} ></Routess>
-        {/* </Container> */}
+        
       </Router>)
       }
       

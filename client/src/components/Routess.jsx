@@ -11,6 +11,8 @@ import AddService from './addService.jsx';
 import Chat from './chat.jsx';
 import Deals from './fixADeals.jsx';
 import Intro from "./intro.jsx";
+import Contact from "./contact";
+import About from "./about";
 
 
 
@@ -29,6 +31,8 @@ const Routess = ({contact, services, onUpdate, onDelete, onViewMessage, newServi
             <Route path="/services" exact element={<Services services={services}/>} />
             <Route path="/servicesDetails/:id" exact element={<ServiceDetail/>} />
             <Route path="/chat" exact element={<Chat contact={contact}/>} />
+            <Route path="/contact" exact element={<Contact/>} />
+            <Route path="/about" exact element={<About/>} />
 
             <Route path="/serviceProvider" exact element={<ServiceProvider services={services} />}/>
             <Route path="/addService" exact element={<AddService newService={newService} />}/>
